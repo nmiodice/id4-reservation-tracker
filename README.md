@@ -1,5 +1,5 @@
 # id4-reservation-tracker
-A command line tool to check the status of a VW ID4 Reservation
+A command line tool to check the status of a VW ID4 Reservation. Thank you to the kind folks at [vwidtalk](https://www.vwidtalk.com/threads/production-order-status-codes-find-what-is-happening-with-my-order.3292/) for providing a list of useful codes
 
 ## Requirements
 - Docker
