@@ -41,52 +41,72 @@ def makeGraphQLAPICall(s, authToken, body):
 def main():
     user = os.getenv("USERNAME")
     passwd = os.getenv("PASSWORD")
+    pageLoadTimeout = int(os.getenv("PAGE_LOAD_TIMEOUT_SECONDS", "10"))
 
     with webdriver.Chrome(options=chrome.options()) as driver:
-        print("Loading VW reservation page...")
-        driver.get("https://www.vw.com/myVW/myreservations/active")
+        try:
+            print("Loading VW reservation page...")
+            driver.get("https://www.vw.com/myVW/myreservations/active")
 
-        # enter username
-        print("Entering username...")
-        usernameInput = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.ID, "input_email"))
-        )
-        usernameInput.send_keys(user)
-
-        # submit username
-        print("Submitting username...")
-        nextButton = driver.find_element(By.XPATH, "//button[@id='next-btn']")
-        nextButton.click()
-
-        # enter password
-        print("Entering password...")
-        passwordInput = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.ID, "password"))
-        )
-        passwordInput.send_keys(passwd)
-
-        # submit password
-        print("Submitting password...")
-        nextButton = driver.find_element(By.XPATH, "//button[@id='next-btn']")
-        nextButton.click()
-
-        # wait for load
-        print("Waiting for reservation page to load...")
-        WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located(
-                (By.XPATH, "//div[text() = 'Reservation ID']")
+            # enter username
+            print("Entering username...")
+            usernameInput = WebDriverWait(driver, pageLoadTimeout).until(
+                EC.presence_of_element_located((By.ID, "input_email"))
             )
-        )
+            usernameInput.send_keys(user)
 
-        # get auth token for VW Graph API
-        print("Parsing authentication token...")
-        authToken = driver.get_cookie("azt")["value"]
+            # submit username
+            print("Submitting username...")
+            nextButton = driver.find_element(By.XPATH, "//button[@id='next-btn']")
+            nextButton.click()
 
-        print("Parsing authentication subject...")
-        oAuthSubject = jwt.decode(authToken, options={"verify_signature": False})["sub"]
+            # enter password
+            print("Entering password...")
+            passwordInput = WebDriverWait(driver, pageLoadTimeout).until(
+                EC.presence_of_element_located((By.ID, "password"))
+            )
+            passwordInput.send_keys(passwd)
 
-        print("Parsing reservation id...")
-        reservationID = driver.get_cookie("selectedReservation")["value"]
+            # submit password
+            print("Submitting password...")
+            nextButton = driver.find_element(By.XPATH, "//button[@id='next-btn']")
+            nextButton.click()
+
+            # wait for load
+            print("Waiting for reservation page to load...")
+            WebDriverWait(driver, pageLoadTimeout).until(
+                EC.presence_of_element_located(
+                    (By.XPATH, "//div[text() = 'Reservation ID']")
+                )
+            )
+
+            # get auth token for VW Graph API
+            print("Parsing authentication token...")
+            authToken = driver.get_cookie("azt")["value"]
+
+            print("Parsing authentication subject...")
+            oAuthSubject = jwt.decode(authToken, options={"verify_signature": False})[
+                "sub"
+            ]
+
+            print("Parsing reservation id...")
+            reservationID = driver.get_cookie("selectedReservation")["value"]
+
+        except Exception as e:
+            pageHTML = driver.page_source
+            pageHTMLRedacted = pageHTML.replace(user, "__USERNAME_REDACTED__").replace(
+                passwd, "__PASSWORD_REDACTED__"
+            )
+            print(pageHTMLRedacted)
+
+            error = "\n".join(
+                [
+                    "ERROR: Please creat a GitHub Issue with the full  error output",
+                    "ERROR: Note: Your username and password may show up in the output. There was an attempt to redact them",
+                    "ERROR:       Please confirm that your username and password do not show up in the output above!",
+                ]
+            )
+            raise Exception(error) from e
 
         s = requests.session()
         s.cookies.update({c["name"]: c["value"] for c in driver.get_cookies()})

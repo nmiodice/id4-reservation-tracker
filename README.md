@@ -10,6 +10,11 @@ A command line tool to check the status of a VW ID4 Reservation. Thank you to th
 export USERNAME=<email used for VW reservation>
 export PASSWORD=<password used for VW reservation>
 
+# optional - the default page load timeout is 10 seconds, which
+# should be fine for most people. If your internet is slow, you
+# can bump this up.
+export PAGE_LOAD_TIMEOUT_SECONDS=20
+
 ./run.sh
 ```
 
