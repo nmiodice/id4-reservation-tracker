@@ -22,7 +22,7 @@ KNOWN_VW_ORDER_CODES = {
     "35-1": "released to the transporter (rail)",
     "35-2": "released to the transporter (truck)",
     "35-3": "released to the transporter (shorter distance truck?)",
-    "50": "and higher- Arriving at dealer",
+    "50": "Arriving at dealer",
 }
 
 GRAPHQL_API_ENDPOINT = "https://api.vw.com/graphql"
