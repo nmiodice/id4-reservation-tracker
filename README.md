@@ -37,4 +37,5 @@ Order Status                            03 (Locked)
 Estimated Production Date               None
 Estimated Deliver Date (beginning)      2022-4-01
 Estimated Deliver Date (end)            2022-5-01
+VIN                                     None
 ```
