@@ -17,7 +17,6 @@ export PASSWORD=<password used for VW reservation>
 
 ```bash
 $ ./run.sh
-Loading VW reservation page...
 Entering username...
 Submitting username...
 Entering password...
@@ -29,8 +28,8 @@ Parsing reservation id...
 Making GraphQL API: GetUserProfileByUserId
 Parsing GraphQL API response
 
-Order Status                        -->  03 (Locked)
-Estimated Production Date           -->  None
-Estimated Deliver Date (beginning)  -->  2022-4-01
-Estimated Deliver Date (end)        -->  2022-5-01
+Order Status                            03 (Locked)
+Estimated Production Date               None
+Estimated Deliver Date (beginning)      2022-4-01
+Estimated Deliver Date (end)            2022-5-01
 ```
