@@ -37,11 +37,23 @@ def makeGraphQLAPICall(s, authToken, body):
     response = s.post(GRAPHQL_API_ENDPOINT, headers=headers, json=body, verify=False)
     return json.loads(response.text)
 
+# See https://stackoverflow.com/questions/47992533/selenium-submit-works-fine-but-click-does-not/47993302.
+#
+# the button may be disabled based on javascript, but this tries to both click it and submit it. The try
+# is needed in case click works and then submit will fail
+def submit(element):
+    try:
+        element.click()
+        element.submit()
+    except:
+        pass
 
 def main():
     user = os.getenv("USERNAME")
     passwd = os.getenv("PASSWORD")
-    pageLoadTimeout = int(os.getenv("PAGE_LOAD_TIMEOUT_SECONDS", "10"))
+    pageLoadTimeout = int(os.getenv("PAGE_LOAD_TIMEOUT_SECONDS", "20"))
+
+    print("CONFIG: Using page load timeout of " + str(pageLoadTimeout))
 
     with webdriver.Chrome(options=chrome.options()) as driver:
         try:
@@ -58,7 +70,7 @@ def main():
             # submit username
             print("Submitting username...")
             nextButton = driver.find_element(By.XPATH, "//button[@id='next-btn']")
-            nextButton.click()
+            submit(nextButton)
 
             # enter password
             print("Entering password...")
@@ -70,7 +82,7 @@ def main():
             # submit password
             print("Submitting password...")
             nextButton = driver.find_element(By.XPATH, "//button[@id='next-btn']")
-            nextButton.click()
+            submit(nextButton)
 
             # wait for load
             print("Waiting for reservation page to load...")
