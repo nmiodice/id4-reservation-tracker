@@ -8,13 +8,18 @@ A command line tool to check the status of a VW ID4 Reservation. Thank you to th
   - https://docs.docker.com/desktop/windows/install/
 
 ## Setup
-1. Clone or download this repository
-2. Copy the file called **.env.template** in the main directory into a new file **.env**
-3. Set your username and password for the VW reservation portal in the .env file
-```
-USERNAME=<Your Username Here>
-PASSWORD=<Your Password Here>
-```
+- Clone or download this repository
+- Review the contents of `.env.template` and configure your environment correctly. At a minimum, you will need to set environment variables for `USERNAME` and `PASSWORD`.
+  - On `*nix` systems, you can run:
+    ```bash
+    $ cp .env.template .env
+    
+    # configure variables here
+    $ vim .env
+    
+    $ . .env
+    ```
+  - On windows, these can be set in Powershell using `$Env:<variable-name> = "<new-value>"`
 
 ## Optional settings
   - Provide a value for **PAGE_LOAD_TIMEOUT_SECONDS** to override the default 20 second timeout.
