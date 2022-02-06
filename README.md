@@ -9,15 +9,14 @@ A command line tool to check the status of a VW ID4 Reservation. Thank you to th
 
 ## Setup
 1. Clone or download this repository
-2. Edit the file called **.env.template** in the main directory
-3. Set your username and password for the VW reservation portal
+2. Copy the file called **.env.template** in the main directory into a new file **.env**
+3. Set your username and password for the VW reservation portal in the .env file
 ```
 USERNAME=<Your Username Here>
 PASSWORD=<Your Password Here>
 ```
 
 ## Optional settings
-- In the supplied .env file
   - Provide a value for **PAGE_LOAD_TIMEOUT_SECONDS** to override the default 20 second timeout.
   ```
   PAGE_LOAD_TIMEOUT_SECONDS=60
