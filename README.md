@@ -3,17 +3,31 @@ A command line tool to check the status of a VW ID4 Reservation. Thank you to th
 
 ## Requirements
 - Docker (Unix)
-- https://docs.docker.com/engine/install/ubuntu/
-- OR Docker Desktop (Windows) 
-- https://docs.docker.com/desktop/windows/install/
+  - https://docs.docker.com/engine/install/ubuntu/
+- Docker Desktop (Windows) 
+  - https://docs.docker.com/desktop/windows/install/
 
 ## Setup
-Edit the .env file to set your username and password environment variables.
-These are copied into the docker container which is deleted after it runs.
+1. Clone or download this repository
+2. Edit the .env file and set your username and password (these are copied into the container which is deleted after it's ran)
 ```
 export USERNAME=<email used for VW reservation UI>
 export PASSWORD=<password used for VW reservation UI>
 ```
+
+## Optional settings
+- In the supplied .env file
+  - Provide a value for **PAGE_LOAD_TIMEOUT_SECONDS** to override the default 20 second timeout.
+  ```
+  PAGE_LOAD_TIMEOUT_SECONDS=60
+  ```
+  - Change the value of **VERBOSE** to 1 to get the raw response body from VW's reservation system
+  ```
+  VERBOSE=1
+  ...
+  Raw response data
+  {'data': {'authenticatedGetReservation': {'deliveryDealerCode': '1234', 'orderStatusCode': '<See link to vwidtalk forums above for list of expected status codes>', 'publicReservationId': 'ABC123', 'reservationStatus': 'ACTIVE',  'estimatedProductionDate': None, 'configurationId': 'AAAAAAAAAAAAAAAAAAA-BBBBBBBBBBBBBBBBBBBBB-CCCCCCCCCCCC', 'vwModelCodeKey': '1239040', 'marketingCode': None, 'fromEstmtdDlvryDate': 'YYYY-MM-DD', 'toEstmtdDlvryDate': 'YYYY-MM-DD', 'vin': 'ABC!@#', '__typename': 'Reservation'}, 'getDealerById': None}}
+  ```
 
 ## Usage (Unix)
 
