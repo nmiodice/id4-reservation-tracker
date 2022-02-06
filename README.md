@@ -19,6 +19,7 @@ A command line tool to check the status of a VW ID4 Reservation. Thank you to th
     
     $ . .env
     ```
+  - On `*nix` systems, you could also use https://direnv.net/
   - On windows, these can be set in Powershell using `$Env:<variable-name> = "<new-value>"`
 
 ## Optional settings
