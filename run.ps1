@@ -5,7 +5,7 @@ $NAME="VW_ID4_"+$(([DateTimeOffset](Get-Date)).ToUnixTimeSeconds())
 
 # Build and run container
 docker build -f Dockerfile . -t "$TAG"
-docker run --name "$NAME" --env-file=.env "$TAG"
+docker run --name "$NAME" --env-file=.env.template "$TAG"
 
 # Pause before closing to show output
 Read-Host "Press any key to close ..."

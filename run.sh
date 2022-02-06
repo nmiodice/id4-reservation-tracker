@@ -9,7 +9,7 @@ NAME="VW_ID4_$(date +%s)"
 
 # Build and run container
 docker build -f Dockerfile . -t "$TAG"
-docker run --name "$NAME" --env-file=.env "$TAG"
+docker run --name "$NAME" --env-file=.env.template "$TAG"
 
 # Pause before closing to show output
 read -p "Press any key to close ..."
