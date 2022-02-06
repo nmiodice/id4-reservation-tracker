@@ -9,10 +9,15 @@ A command line tool to check the status of a VW ID4 Reservation. Thank you to th
 
 ## Setup
 1. Clone or download this repository
-2. Edit the .env file and set your username and password (these are copied into the container which is deleted after it's ran)
+2. Create a file called **.env.template** in the main directory
+3. Copy the contents below into that file, setting your username and password for the VW reservation portal.
 ```
-export USERNAME=<email used for VW reservation UI>
-export PASSWORD=<password used for VW reservation UI>
+USERNAME=<Your Username Here>
+PASSWORD=<Your Password Here>
+
+# optional
+PAGE_LOAD_TIMEOUT_SECONDS=
+VERBOSE=1 
 ```
 
 ## Optional settings
