@@ -148,7 +148,7 @@ def main():
         # VERBOSE Output
         if False if not os.getenv("VERBOSE") else int(os.getenv("VERBOSE")):
             print("Raw response data")
-            print(json.dumps(response, indent=4, sort_keys=True))
+            print(json.dumps(response, indent=2, sort_keys=True))
 
         usefulData = response["data"]["authenticatedGetReservation"]
         orderCode = usefulData["orderStatusCode"]

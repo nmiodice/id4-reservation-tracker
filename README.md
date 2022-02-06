@@ -32,7 +32,25 @@ A command line tool to check the status of a VW ID4 Reservation. Thank you to th
   VERBOSE=1
   ...
   Raw response data
-  {'data': {'authenticatedGetReservation': {'deliveryDealerCode': '1234', 'orderStatusCode': '<See link to vwidtalk forums above for list of expected status codes>', 'publicReservationId': 'ABC123', 'reservationStatus': 'ACTIVE',  'estimatedProductionDate': None, 'configurationId': 'AAAAAAAAAAAAAAAAAAA-BBBBBBBBBBBBBBBBBBBBB-CCCCCCCCCCCC', 'vwModelCodeKey': '1239040', 'marketingCode': None, 'fromEstmtdDlvryDate': 'YYYY-MM-DD', 'toEstmtdDlvryDate': 'YYYY-MM-DD', 'vin': 'ABC!@#', '__typename': 'Reservation'}, 'getDealerById': None}}
+  {
+    "data": {
+      "authenticatedGetReservation": {
+        "__typename": "Reservation",
+        "configurationId": "...",
+        "deliveryDealerCode": "...",
+        "estimatedProductionDate": "...",
+        "fromEstmtdDlvryDate": "...",
+        "marketingCode": "...",
+        "orderStatusCode": "<See link to vwidtalk forums above for list of expected status codes>",
+        "publicReservationId": "...",
+        "reservationStatus": "ACTIVE",
+        "toEstmtdDlvryDate": "...",
+        "vin": "...",
+        "vwModelCodeKey": "..."
+      },
+      "getDealerById": null
+    }
+  }
   ```
 
 ## Usage (Unix)
