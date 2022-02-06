@@ -51,7 +51,13 @@ def submit(element):
 def main():
     user = os.getenv("USERNAME")
     passwd = os.getenv("PASSWORD")
-    pageLoadTimeout = int(os.getenv("PAGE_LOAD_TIMEOUT_SECONDS", "20"))
+
+    if not user or not passwd:
+        print("ERROR: Username and password not set! Update .env file and run again.")
+        exit()
+
+    pageLoadTimeoutEnv = os.getenv("PAGE_LOAD_TIMEOUT_SECONDS")
+    pageLoadTimeout = int("20" if not pageLoadTimeoutEnv else pageLoadTimeoutEnv)
 
     print("CONFIG: Using page load timeout of " + str(pageLoadTimeout))
 
@@ -138,6 +144,11 @@ def main():
 
         print("Parsing GraphQL API response")
         print()
+
+        # VERBOSE Output
+        if False if not os.getenv("VERBOSE") else int(os.getenv("VERBOSE")):
+            print("Raw response data")
+            print(response, end='\n\n')
 
         usefulData = response["data"]["authenticatedGetReservation"]
         orderCode = usefulData["orderStatusCode"]
