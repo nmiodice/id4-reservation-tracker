@@ -20,7 +20,7 @@ RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
 WORKDIR /src
 COPY requirements.txt .
 RUN python3 -m pip install -r requirements.txt
-COPY *.py .
+COPY *.py ./
 
 ENV PYTHONWARNINGS="ignore:Unverified HTTPS request"
 CMD ["python3", "main.py"]
