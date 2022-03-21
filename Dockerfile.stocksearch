@@ -1,0 +1,12 @@
+FROM python:3.8
+
+# update pip and other python dependencies
+RUN python3 -m pip install --upgrade pip setuptools wheel
+
+# install python app
+WORKDIR /src
+COPY requirements.txt .
+RUN python3 -m pip install -r requirements.txt
+COPY *.py ./
+
+ENTRYPOINT ["python3"]

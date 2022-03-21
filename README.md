@@ -1,5 +1,11 @@
 # id4-reservation-tracker
-A command line tool to check the status of a VW ID4 Reservation. Thank you to the kind folks at [vwidtalk](https://www.vwidtalk.com/threads/production-order-status-codes-find-what-is-happening-with-my-order.3292/) for providing a list of useful codes
+
+Command line tools related to the VW ID.4 reservation process.
+
+This repository contains 2 tools:
+
+ - `reservation-check`: Check the status of a VW ID4 Reservation. Thank you to the kind folks at [vwidtalk](https://www.vwidtalk.com/threads/production-order-status-codes-find-what-is-happening-with-my-order.3292/) for providing a list of useful codes
+ - `stock-search`: Check all stock levels for ID.4 in the USA. See my post on [vwidtalk](https://www.vwidtalk.com/threads/how-i-found-an-out-of-state-id-4-in-under-1-week.5361/) for more details.
 
 ## Requirements
 - Docker (Unix)
@@ -21,6 +27,10 @@ A command line tool to check the status of a VW ID4 Reservation. Thank you to th
     ```
   - On `*nix` systems, you could also use https://direnv.net/
   - On windows, these can be set in Powershell using `$Env:<variable-name> = "<new-value>"`
+
+# Reservation Check
+
+Check the status of a VW ID4 Reservation. Thank you to the kind folks at [vwidtalk](https://www.vwidtalk.com/threads/production-order-status-codes-find-what-is-happening-with-my-order.3292/) for providing a list of useful codes
 
 ## Optional settings
   - Provide a value for **PAGE_LOAD_TIMEOUT_SECONDS** to override the default 20 second timeout.
@@ -56,18 +66,18 @@ A command line tool to check the status of a VW ID4 Reservation. Thank you to th
 ## Usage (Unix)
 
 ```bash
-./run.sh
+./reservation-check.sh
 ```
 
 ## Usage (Windows)
 ```
-./run.ps1
+./reservation-check.ps1
 ```
 
 ## Sample Output
 
 ```bash
-$ ./run.sh
+$ ./reservation-check.sh
 Entering username...
 Submitting username...
 Entering password...
@@ -85,4 +95,18 @@ Estimated Deliver Date (beginning)      2022-4-01
 Estimated Deliver Date (end)            2022-5-01
 VIN                                     None
 Press any key to close ...
+```
+
+# Stock Search
+
+Check all stock levels for ID.4 in the USA. See my post on [vwidtalk](https://www.vwidtalk.com/threads/how-i-found-an-out-of-state-id-4-in-under-1-week.5361/) for more details.
+
+## Usage (Unix)
+
+```bash
+# full output
+./stock-search.sh
+
+# or, filter only CSV output
+./stock-search.sh | grep ','
 ```
