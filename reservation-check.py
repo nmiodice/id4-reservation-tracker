@@ -136,7 +136,7 @@ def main():
             {
                 "operationName": "GetReservationDealerDetails",
                 "variables": {},
-                "query": 'query GetReservationDealerDetails {\n  authenticatedGetReservation(publicId: "__RESERVATION_ID__") {\n    deliveryDealerCode\n    orderStatusCode\n    publicReservationId\n    reservationStatus\n    estimatedProductionDate\n    configurationId\n    vwModelCodeKey\n    marketingCode\n    fromEstmtdDlvryDate\n    toEstmtdDlvryDate\n    vin\n    __typename\n  }\n  getDealerById(id: "__DEALER_ID__") {\n    name\n    address {\n      address1\n      address2\n      city\n      state\n      zip\n      __typename\n    }\n    __typename\n  }\n}\n'.replace(
+                "query": 'query GetReservationDealerDetails {\n  authenticatedGetReservation(publicId: "__RESERVATION_ID__") {\n    deliveryDealerCode\n    orderStatusCode\n    publicReservationId\n    reservationStatus\n    estimatedProductionDate\n    configurationId\n    vwModelCodeKey\n    marketingCode\n    fromEstmtdDlvryDate\n    toEstmtdDlvryDate\n    etaValue\n    vin\n    __typename\n  }\n  getDealerById(id: "__DEALER_ID__") {\n    name\n    address {\n      address1\n      address2\n      city\n      state\n      zip\n      __typename\n    }\n    __typename\n  }\n}\n'.replace(
                     "__RESERVATION_ID__", reservationID
                 ),
             },
@@ -169,6 +169,9 @@ def main():
 
         print("Estimated Deliver Date (end)".ljust(40), end="")
         print(usefulData["toEstmtdDlvryDate"])
+        
+        print("Estimated Pickup".ljust(40), end="")
+        print(usefulData["etaValue"])
 
         print("VIN".ljust(40), end="")
         print(usefulData["vin"])
